@@ -197,7 +197,7 @@ contin_t contin_interpreter::contin_eval(combo_tree::iterator it) const
         default: {
             std::stringstream ss;
             ss << *b;
-            throw ComboException(TRACE_INFO,
+            throw RuntimeException(TRACE_INFO,
                   "contin_interpreter does not handle builtin %s",
                   ss.str().c_str());
             return contin_t();
@@ -213,7 +213,7 @@ contin_t contin_interpreter::contin_eval(combo_tree::iterator it) const
     else {
         std::stringstream ss;
         ss << v;
-        throw ComboException(TRACE_INFO,
+        throw RuntimeException(TRACE_INFO,
               "contin_interpreter does not handle vertex %s",
               ss.str().c_str());
         return contin_t();

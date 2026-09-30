@@ -71,6 +71,7 @@ ADD_LIBRARY (moses SHARED
 )
 
 TARGET_LINK_LIBRARIES (moses
+	opencog_util_vendored
 	feature_selection
 	comboreduct
 	comboant

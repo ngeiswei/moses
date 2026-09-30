@@ -143,6 +143,13 @@ ENDIF (MPI_FOUND)
 # This is required for Python
 include(OpenCogFindPython)
 
+# OpenCogFindPython.cmake uses FIND_PACKAGE(Python3 COMPONENTS ...), which
+# sets Python3_INCLUDE_DIRS, but legacy code in this project expects the
+# older PYTHON_INCLUDE_DIRS variable. Bridge them here.
+IF (Python3_INCLUDE_DIRS AND NOT PYTHON_INCLUDE_DIRS)
+	SET(PYTHON_INCLUDE_DIRS ${Python3_INCLUDE_DIRS})
+ENDIF()
+
 # ----------------------------------------------------------
 # Optional, currently needed only to hush up DRD in util/Logger.cc
 FIND_PACKAGE(VALGRIND)
@@ -218,6 +225,12 @@ ADD_DEFINITIONS(-DDATADIR="${DATADIR}")
 
 # (re?)define MAN_INSTALL_DIR
 SET (MAN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/man")
+
+# ==========================================================
+# Vendored utility headers that were removed from upstream cogutil.
+# This must be added BEFORE the moses subdirectory so that the
+# vendored <opencog/util/*.h> headers take precedence over cogutil's.
+ADD_SUBDIRECTORY(opencog)
 
 # ==========================================================
 # Decide what to build, based on the packages found.

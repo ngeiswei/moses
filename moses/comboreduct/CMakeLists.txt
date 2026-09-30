@@ -62,6 +62,7 @@ ADD_LIBRARY(comboreduct SHARED
 )
 
 TARGET_LINK_LIBRARIES (comboreduct
+	opencog_util_vendored
 	${COGUTIL_LIBRARY}
 	${Boost_DATE_TIME_LIBRARY}
 	${Boost_THREAD_LIBRARY}

@@ -35,7 +35,7 @@ combo_tree eval_procedure_tree(const vertex_seq& bmap,
 {
     // sanity checks
     if (!is_procedure_call(*it)) {
-        throw ComboException(TRACE_INFO,
+        throw RuntimeException(TRACE_INFO,
                                       "ProcedureEvaluator - combo_tree node does not represent a combo procedure call.");
     }
     procedure_call pc = get_procedure_call(*it);
@@ -48,13 +48,13 @@ combo_tree eval_procedure_tree(const vertex_seq& bmap,
     //OC_ASSERT(ar>=0, "It is assumed that arity is 0 or above, if not in that case the procedure must contain operator with arbitrary arity like and_seq and no variable binding to it, it is probably an error but if you really want to deal with that then ask Nil to add the support of it");
     if (fixed_arity) {
         if (ap_args != ar) {
-            throw ComboException(TRACE_INFO,
+            throw RuntimeException(TRACE_INFO,
                                           "ProcedureEvaluator - %s arity differs from no. node's children. Arity: %d, number_of_children: %d",
                                           get_procedure_call(*it)->get_name().c_str(), ar, ap_args);
         }
     } else {
         if (ap_args < exp_arity) {
-            throw ComboException(TRACE_INFO,
+            throw RuntimeException(TRACE_INFO,
                                           "ProcedureEvaluator - %s minimum arity is greater than no. node's children. Minimum arity: %d, number_of_children: %d",
                                           get_procedure_call(*it)->get_name().c_str(), exp_arity, ap_args);
         }
@@ -348,7 +348,7 @@ combo_tree eval_throws_tree(const vertex_seq& bmap,
                 lp = evo.begin();
             }
             if (*lp != id::list)
-                throw ComboException(TRACE_INFO, "not a list!");
+                throw RuntimeException(TRACE_INFO, "not a list!");
 
             // If the list is empty; then return empty list!
             // That is, use an empty list to represent nil.
@@ -367,7 +367,7 @@ combo_tree eval_throws_tree(const vertex_seq& bmap,
                 top = evo.begin();
             }
             if (*top != id::list)
-                throw ComboException(TRACE_INFO, "not a list!");
+                throw RuntimeException(TRACE_INFO, "not a list!");
 
             sib_it sib = top.begin();
 

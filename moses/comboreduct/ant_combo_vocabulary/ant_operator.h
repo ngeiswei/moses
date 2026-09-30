@@ -102,7 +102,7 @@ void ant_operator<OPERATOR_ENUM, enum_count>::set_basic_description(OPERATOR_ENU
             try {
                 is >> _type_tree;
             }
-            catch(opencog::InconsistenceException& ie) {
+            catch(opencog::RuntimeException& ie) {
                 std::cout << "WARNING : there must be a problem with the type description of " << _name << ", as the interpretation of the type string : " << "\"" << is.str() << "\"" << " has raised the following exception : " << ie.get_message() << std::endl;
             }
             //setting arity

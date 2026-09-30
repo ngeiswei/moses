@@ -31,7 +31,7 @@ namespace opencog { namespace combo {
 
 /// Base class for all combo user-error exceptions
 ///
-/// Non-user errors, such as internal bugs, use ComboException
+/// Non-user errors, such as internal bugs, use RuntimeException
 /// (defined in util/exceptions.h) so that a stack trace gets printed
 /// to the log-file.
 class ComboReductException

@@ -420,7 +420,7 @@ contin_t OTable::abs_distance(const OTable& ot) const
             res += (contin_t) (get_enum_type(*(x++)) != get_enum_type(*(y++)));
     }
     else
-        throw InconsistenceException(TRACE_INFO,
+        throw RuntimeException(TRACE_INFO,
             "Can't compare, mismatched column types.");
     return res;
 }
